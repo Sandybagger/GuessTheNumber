@@ -1,13 +1,13 @@
 #specify the parameters 
-lower_number = 0
-upper_number = 1000
-guess_limit = 10
+lower_number = 1
+upper_number = 10
+guess_limit = 3
 
 #store secret number 
 import random
 secret_number = random.randint(lower_number, upper_number)
-print("I am thinking of a number between " + str(lower_number) + " and " + str(upper_number))
-print("You will have " + str(guess_limit) + " chances to try to guess it")
+print("I am thinking of a number between " + str(lower_number) + " and " + str(upper_number) + ".")
+print("You will have " + str(guess_limit) + " chances to try to guess it. \n")
 
 #functions to check for strings and floats
 def is_string_only(check_input):
@@ -54,7 +54,7 @@ while guess_count < guess_limit:
             if guesses_left > 1:
                 print("You have " + str(guesses_left) + " guesses left.")
             else: 
-                print("You have 1 guess left")
+                print("You have 1 guess left.")
 else: 
     print("You were not able guess the number...")
 
