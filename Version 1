@@ -1,13 +1,15 @@
+#specify the parameters 
 lower_number = 0
 upper_number = 1000
 guess_limit = 10
 
+#store secret number 
 import random
 secret_number = random.randint(lower_number, upper_number)
-
 print("I am thinking of a number between " + str(lower_number) + " and " + str(upper_number))
 print("You will have " + str(guess_limit) + " chances to try to guess it")
 
+#functions to check for strings and floats
 def is_string_only(check_input):
     if check_input.isalpha():
         return True
@@ -19,6 +21,7 @@ def is_float(check_input):
                 return True
     return False
 
+#run multiple guess iterations
 has_won = False
 guess_count = 0
 while guess_count < guess_limit:
@@ -27,26 +30,35 @@ while guess_count < guess_limit:
         print("Words won't help you guess the number.")
     elif is_float(guess): 
         print("The number is an integer, not a decimal.")
+    #victory clause
     elif secret_number == float(guess):
         guess_count = guess_count + 1
         print("Correct! You guessed the number and won the game!")
         has_won = True
         break
+    #incorrect clause
     elif secret_number < float(guess):
         guess_count = guess_count + 1
         if guess_count < guess_limit:
             print("Wrong. The number is a lower number.")
             guesses_left = guess_limit - guess_count
-            print("You have " + str(guesses_left) + " guesses left.")
+            if guesses_left > 1:
+                print("You have " + str(guesses_left) + " guesses left.")
+            else: 
+                print("You have 1 guess left")
     elif secret_number > float(guess):
         guess_count = guess_count + 1
         if guess_count < guess_limit:
             print("Wrong. The number is a higher number.")
             guesses_left = guess_limit - guess_count
-            print("You have " + str(guesses_left) + " guesses left.")
+            if guesses_left > 1:
+                print("You have " + str(guesses_left) + " guesses left.")
+            else: 
+                print("You have 1 guess left")
 else: 
     print("You were not able guess the number...")
 
+#print number of guesses needed to win
 if has_won: 
     if guess_count == 1:
         print("It took you 1 guess.")
