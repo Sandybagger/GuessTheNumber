@@ -1,0 +1,54 @@
+lower_number = 0
+upper_number = 1000
+guess_limit = 10
+
+import random
+secret_number = random.randint(lower_number, upper_number)
+
+print("I am thinking of a number between " + str(lower_number) + " and " + str(upper_number))
+print("You will have " + str(guess_limit) + " chances to try to guess it")
+
+def is_string_only(check_input):
+    if check_input.isalpha():
+        return True
+    return False
+def is_float(check_input): 
+    if '.' in check_input:
+        split_number = check_input.split('.')
+        if len(split_number) == 2 and split_number[0].isdigit() and split_number[1].isdigit():
+                return True
+    return False
+
+has_won = False
+guess_count = 0
+while guess_count < guess_limit:
+    guess = (input("Guess: " ))
+    if is_string_only(guess):
+        print("Words won't help you guess the number.")
+    elif is_float(guess): 
+        print("The number is an integer, not a decimal.")
+    elif secret_number == float(guess):
+        guess_count = guess_count + 1
+        print("Correct! You guessed the number and won the game!")
+        has_won = True
+        break
+    elif secret_number < float(guess):
+        guess_count = guess_count + 1
+        if guess_count < guess_limit:
+            print("Wrong. The number is a lower number.")
+            guesses_left = guess_limit - guess_count
+            print("You have " + str(guesses_left) + " guesses left.")
+    elif secret_number > float(guess):
+        guess_count = guess_count + 1
+        if guess_count < guess_limit:
+            print("Wrong. The number is a higher number.")
+            guesses_left = guess_limit - guess_count
+            print("You have " + str(guesses_left) + " guesses left.")
+else: 
+    print("You were not able guess the number...")
+
+if has_won: 
+    if guess_count == 1:
+        print("It took you 1 guess.")
+    else:
+        print("It took you " + str(guess_count) + " guesses.")
