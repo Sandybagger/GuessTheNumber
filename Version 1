@@ -1,7 +1,7 @@
 #specify the parameters 
-lower_number = 1
-upper_number = 10
-guess_limit = 3
+lower_number = 0
+upper_number = 1000
+guess_limit = 10
 
 #store secret number 
 import random
